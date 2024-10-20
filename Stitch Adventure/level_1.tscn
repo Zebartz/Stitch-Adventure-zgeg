@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://dexr5a1mwtvuo"]
+
+[ext_resource type="Texture2D" uid="uid://b4k6y13nu3mn3" path="res://purple.png" id="1_dawcw"]
+[ext_resource type="Script" path="res://level.gd" id="1_idwb1"]
+[ext_resource type="PackedScene" uid="uid://cqagavtubtv8o" path="res://player.tscn" id="2_xylu1"]
+[ext_resource type="PackedScene" uid="uid://cmif72fiut6e7" path="res://maze.tscn" id="3_uy0f1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_58p58"]
+font_size = 32
+
+[node name="Level 1" type="Node2D"]
+script = ExtResource("1_idwb1")
+
+[node name="End label" type="Label" parent="."]
+z_index = 2
+offset_left = -1386.0
+offset_top = -112.0
+offset_right = -934.0
+text = "Bravo !"
+label_settings = SubResource("LabelSettings_58p58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Help label" type="Label" parent="."]
+z_index = 2
+offset_left = -204.0
+offset_top = -228.0
+offset_right = 248.0
+offset_bottom = -42.0
+text = "Ne touchez pas les bords,
+sinon vous reviendrez 
+au départ !"
+label_settings = SubResource("LabelSettings_58p58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start label" type="Label" parent="."]
+z_index = 2
+offset_left = -159.0
+offset_top = 265.0
+offset_right = 293.0
+offset_bottom = 377.0
+text = "Aidez Stitch à trouver 
+ses croquettes !"
+label_settings = SubResource("LabelSettings_58p58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_dawcw")
+stretch_mode = 1
+
+[node name="Maze" parent="." instance=ExtResource("3_uy0f1")]
+z_index = -1
+scale = Vector2(3, 3)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_xylu1")]
+position = Vector2(62, 200)
+
+[connection signal="body_exited" from="Maze" to="Player" method="_on_maze_body_exited"]
