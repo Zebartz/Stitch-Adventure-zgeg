@@ -1,21 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://dexr5a1mwtvuo"]
+[gd_scene load_steps=8 format=3 uid="uid://dexr5a1mwtvuo"]
 
-[ext_resource type="Texture2D" uid="uid://b4k6y13nu3mn3" path="res://purple.png" id="1_dawcw"]
 [ext_resource type="Script" path="res://level.gd" id="1_idwb1"]
+[ext_resource type="Texture2D" uid="uid://dr75qbsg7ttra" path="res://patoune.png" id="2_fmr8c"]
 [ext_resource type="PackedScene" uid="uid://cqagavtubtv8o" path="res://player.tscn" id="2_xylu1"]
 [ext_resource type="PackedScene" uid="uid://cmif72fiut6e7" path="res://maze.tscn" id="3_uy0f1"]
+[ext_resource type="Texture2D" uid="uid://bhchwadpah7yq" path="res://Croquettes.png" id="5_r1o2m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_58p58"]
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ndyym"]
+font_size = 64
+outline_size = 20
+outline_color = Color(0.180005, 0.180005, 0.180005, 1)
+shadow_size = 10
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_idwb1")
 
 [node name="End label" type="Label" parent="."]
 z_index = 2
-offset_left = -1386.0
-offset_top = -112.0
-offset_right = -934.0
+offset_left = -1438.0
+offset_top = -103.0
+offset_right = -986.0
+offset_bottom = 9.0
 text = "Bravo !"
 label_settings = SubResource("LabelSettings_58p58")
 horizontal_alignment = 1
@@ -23,10 +31,10 @@ vertical_alignment = 1
 
 [node name="Help label" type="Label" parent="."]
 z_index = 2
-offset_left = -204.0
-offset_top = -228.0
-offset_right = 248.0
-offset_bottom = -42.0
+offset_left = -508.0
+offset_top = -653.0
+offset_right = -56.0
+offset_bottom = -467.0
 text = "Ne touchez pas les bords,
 sinon vous reviendrez 
 au départ !"
@@ -34,14 +42,48 @@ label_settings = SubResource("LabelSettings_58p58")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Help label2" type="Label" parent="."]
+z_index = 2
+offset_left = -198.0
+offset_top = 237.0
+offset_right = 341.0
+offset_bottom = 423.0
+text = "Flèches ou ZQSD pour se déplacer !"
+label_settings = SubResource("LabelSettings_58p58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Start label" type="Label" parent="."]
 z_index = 2
-offset_left = -159.0
-offset_top = 265.0
-offset_right = 293.0
-offset_bottom = 377.0
+offset_left = 137.0
+offset_top = -337.0
+offset_right = 589.0
+offset_bottom = -225.0
 text = "Aidez Stitch à trouver 
 ses croquettes !"
+label_settings = SubResource("LabelSettings_58p58")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start label3" type="Label" parent="."]
+z_index = 2
+offset_left = -299.0
+offset_top = -49.0
+offset_right = 402.0
+offset_bottom = 63.0
+text = "STITCH ADVENTURE V1"
+label_settings = SubResource("LabelSettings_ndyym")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start label2" type="Label" parent="."]
+z_index = 2
+offset_left = -1759.0
+offset_top = -469.0
+offset_right = -1307.0
+offset_bottom = -357.0
+text = "Merci 
+Dylan, Thomas & Tom !"
 label_settings = SubResource("LabelSettings_58p58")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -51,13 +93,14 @@ layer = -1
 
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
 z_index = -10
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-texture = ExtResource("1_dawcw")
+texture = ExtResource("2_fmr8c")
 stretch_mode = 1
 
 [node name="Maze" parent="." instance=ExtResource("3_uy0f1")]
@@ -66,6 +109,15 @@ scale = Vector2(3, 3)
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_xylu1")]
-position = Vector2(62, 200)
+position = Vector2(64, 244)
+
+[node name="Croquettes" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -1304.0
+offset_top = -179.0
+offset_right = -1213.0
+offset_bottom = -88.0
+scale = Vector2(2, 2)
+texture = ExtResource("5_r1o2m")
 
 [connection signal="body_exited" from="Maze" to="Player" method="_on_maze_body_exited"]
